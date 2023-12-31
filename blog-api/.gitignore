@@ -1,0 +1,27 @@
+# Node.js
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Dependency directories
+pids/
+logs/
+results/
+
+# dotenv environment variables file
+.env
+
+# npm
+*.npmrc
+
+# yarn
+yarn-error.log
+.pnp/
+.yarn/
+.yarn-integrity
+node_modules/
+
+# Optional: Uncomment the line below if you're using TypeScript
+# dist/
