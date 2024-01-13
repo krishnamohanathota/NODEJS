@@ -1,3 +1,24 @@
+### Running the Application
+
+- Create a MongoDB Atlas account & Database
+- Create a `.env` file in the root of the project
+  ```
+  MONGODB_URL=mongodb+srv://username:pwd@blogs.abc.mongodb.net/blogs?retryWrites=true&w=majority
+  JWT_KEY=fgfgefgfdgdf
+  ```
+- Install dependencies
+  ```
+  npm install
+  ```
+- Run the application
+  ```
+  npm start
+
+  or
+
+  npm run server
+  
+  ```
 
 ### Express Middleware
 
@@ -39,13 +60,14 @@ Every eroor handle will have access to the
 - stack trace
 
 
-
-
-
 ## Tools 
 
 Rest Client Extension for VS Code : Thunder Client
 
+![Thunder Client Collections / APIs](./thunder-collection_BlogAPIs.json)
 
+## Reference
+
+https://www.youtube.com/watch?v=NTWjsJx7d5Y&t=13715s
 
 

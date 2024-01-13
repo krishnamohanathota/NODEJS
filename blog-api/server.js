@@ -33,6 +33,14 @@ app.use("/api/v1/category", categoryRouter);
 //Error Handler Middleware
 app.use(globalErrorHandler);
 
+//404 Error
+app.use("*", (req, res) => {
+  console.log(req.originalUrl);
+  res.status(404).json({
+    message: `${req.originalUrl} - Route not found`,
+  });
+});
+
 const PORT = process.env.PORT || 9000;
 
 app.listen(PORT, console.log(`Server is up & running on port ${PORT}`));
