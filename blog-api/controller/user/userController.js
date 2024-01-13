@@ -2,17 +2,23 @@ const User = require("../../model/User/User");
 const bcrypt = require("bcryptjs");
 const generateToken = require("../../util/generateToken");
 const getTokenFromHeader = require("../../util/getTokenFromHeader");
+const { appError, AppError } = require("../../util/appError");
 
-const userRegisterCtrl = async (req, res) => {
+const userRegisterCtrl = async (req, res, next) => {
   try {
     const { firstName, lastName, email, password } = req.body;
     const userFound = await User.findOne({ email });
 
     if (userFound) {
+      return next(
+        new AppError(`User already exists with the given email ${email}`, 500)
+      );
+      /*
       return res.json({
         status: "success",
         data: `User already exists with the given email ${email}`,
       });
+      */
     }
 
     //hash user password
@@ -32,7 +38,13 @@ const userRegisterCtrl = async (req, res) => {
       data: user,
     });
   } catch (error) {
-    res.json(error.message);
+    //res.json(error.message);
+
+    //To handle the error message globally, we can use the next() function
+    //next(error.message);
+
+    //To get error stack trace, create a new Error object and pass the error message to it
+    next(appError(error.message, 500));
   }
 };
 
@@ -43,7 +55,8 @@ const userLoginCtrl = async (req, res) => {
     //Check Email
     const user = await User.findOne({ email });
     if (!user) {
-      return res.json({ status: "failed", data: "User not found" });
+      return next(new AppError("User not found", 500));
+      //return res.json({ status: "failed", data: "User not found" });
     }
 
     const isPasswordMatched = await bcrypt.compare(password, user.password);
@@ -51,7 +64,8 @@ const userLoginCtrl = async (req, res) => {
 
     //Check Password
     if (!isPasswordMatched) {
-      return res.json({ status: "failed", data: "Invalid password" });
+      return next(new AppError("Invalid password", 500));
+      //return res.json({ status: "failed", data: "Invalid password" });
     }
 
     res.json({

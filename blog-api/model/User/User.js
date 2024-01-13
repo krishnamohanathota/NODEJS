@@ -5,22 +5,22 @@ const userSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
-      required: [true, "First name is requried"],
+      required: [true, "First name is required"],
     },
     lastName: {
       type: String,
-      required: [true, "Last name is requried"],
+      required: [true, "Last name is required"],
     },
     profilePhoto: {
       type: String,
     },
     email: {
       type: String,
-      required: [true, "Email is requried"],
+      required: [true, "Email is required"],
     },
     password: {
       type: String,
-      required: [true, "Password is requried"],
+      required: [true, "Password is required"],
     },
     posts: {
       type: Number,

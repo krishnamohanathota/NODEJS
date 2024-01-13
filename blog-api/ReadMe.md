@@ -19,3 +19,33 @@ Use cases of middleware functions:
 - Rate Limiting
 - Data validation
 - Any business logic
+
+## Error Handler
+
+Error handling middleware always takes four arguments. You must provide four arguments to identify it as an error-handling middleware function. Even if you don’t need to use the next object, you must specify it to maintain the signature. Otherwise, the next object will be interpreted as regular middleware and will fail to handle errors.
+
+```js
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
+```
+
+This should be the last function added with app.use(). If not, it may not catch errors from other middleware which are added after it.
+
+Every eroor handle will have access to the 
+- status code
+- error message
+- stack trace
+
+
+
+
+
+## Tools 
+
+Rest Client Extension for VS Code : Thunder Client
+
+
+
+

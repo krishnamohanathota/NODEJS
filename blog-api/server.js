@@ -3,6 +3,7 @@ const userRouter = require("./routes/user/userRoutes");
 const postRouter = require("./routes/post/postRouter");
 const commentsRouter = require("./routes/comment/commentsRouter");
 const categoryRouter = require("./routes/category/categoryRouter");
+const globalErrorHandler = require("./middleware/globalErrorHandler");
 
 require("./config/dbConnect");
 
@@ -28,6 +29,9 @@ app.use("/api/v1/users", userRouter);
 app.use("/api/v1/posts", postRouter);
 app.use("/api/v1/comment", commentsRouter);
 app.use("/api/v1/category", categoryRouter);
+
+//Error Handler Middleware
+app.use(globalErrorHandler);
 
 const PORT = process.env.PORT || 9000;
 
